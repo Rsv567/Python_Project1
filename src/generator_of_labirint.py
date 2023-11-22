@@ -6,16 +6,11 @@ from config import cols
 from config import rows
 
 
-
-
-
-
 screen = pygame.display.set_mode(RES)
 clock = pygame.time.Clock()
 pygame.display.set_caption("Labirint")
 icon = pygame.image.load("images/Labirint.png")
 pygame.display.set_icon(icon)
-
 
 class Cell:
     def __init__(self, x, y):
