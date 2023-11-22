@@ -1,5 +1,7 @@
 from random import choice
+
 import pygame
+
 from config import RES
 from config import TILE
 from config import cols
