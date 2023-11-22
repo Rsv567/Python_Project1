@@ -1,7 +1,7 @@
 import pygame
 
 
-class image_button:
+class ImageButton:
     def __init__(self, x, y, width, height, text, image_path, hover_path=None):
         self.x = x
         self.y = y
