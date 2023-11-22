@@ -1,15 +1,15 @@
 import pygame
-from src.dijkstra import Dijkstra
-from src.dijkstra import screen1
-from src.dijkstra import clock
-from src.generator_of_labirint import generate_labirint
 from src.bfs import Bfs
 from src.button import ImageButton
 from src.config import WIDTH
 from src.config import HEIGHT
+from src.dijkstra import Dijkstra
+from src.dijkstra import screen1
+from src.dijkstra import clock
+from src.generator_of_labirint import generate_labirint
+
 
 pygame.init()
-
 pygame.display.set_caption("Labirint")
 generator1 = ImageButton(
     WIDTH / 2 - (150 / 2),
