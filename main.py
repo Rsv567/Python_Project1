@@ -1,4 +1,5 @@
 import pygame
+
 from src.bfs import Bfs
 from src.button import ImageButton
 from src.config import WIDTH
