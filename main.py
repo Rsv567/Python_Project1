@@ -13,8 +13,8 @@ generator1 = ImageButton(
     150,
     74,
     "Лабиринт",
-    "images/red.png",
-    "images/green.com.png",
+    "src/images/red.png",
+    "src/images/green.com.png",
 )
 
 dijkstra1 = ImageButton(
@@ -23,8 +23,8 @@ dijkstra1 = ImageButton(
     150,
     74,
     "Дейкстра",
-    "images/red.png",
-    "images/green.com.png",
+    "src/images/red.png",
+    "src/images/green.com.png",
 )
 deikstra = Dijkstra()
 generate = GenerateLabirint()
@@ -37,7 +37,7 @@ def MainMenu():
 
         screen1.blit(
             pygame.transform.scale(
-                pygame.image.load("images/icon.png"), (WIDTH, HEIGHT)
+                pygame.image.load("src/images/icon.png"), (WIDTH, HEIGHT)
             ),
             (0, 0),
         )
