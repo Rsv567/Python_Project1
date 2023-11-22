@@ -1,7 +1,9 @@
 from heapq import heappush
 from heapq import heappop
 import os
+
 import pygame
+
 import src.bfs as bfs
 from src.config import WIDTH
 from src.config import HEIGHT
@@ -10,25 +12,24 @@ from src.config import cols
 from src.config import rows
 from src.config import TILE
 
+
 screen1 = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.init()
 sc = pygame.display.set_mode([cols * TILE, rows * TILE])
 clock = pygame.time.Clock()
 
 
-
 class Get:
-
-    def get_circle(self,x, y):
+    def get_circle(self, x, y):
         return (x * TILE + TILE // 2, y * TILE + TILE // 2), TILE // 4
 
-
-    def get_rect(self,x, y):
+    def get_rect(self, x, y):
         return x * TILE + 1, y * TILE + 1, TILE - 2, TILE - 2
 
-
-    def get_next_nodes(self,x, y):
-        check_next_node = lambda x, y: True if 0 <= x < cols and 0 <= y < rows else False
+    def get_next_nodes(self, x, y):
+        check_next_node = (
+            lambda x, y: True if 0 <= x < cols and 0 <= y < rows else False
+        )
         ways = [-1, 0], [0, -1], [1, 0], [0, 1]
         return [
             (map_area[y + dy][x + dx], (x + dx, y + dy))
@@ -37,15 +38,13 @@ class Get:
         ]
 
 
-
-
-
 class Dijkstra(Get):
     get = Get()
     graph = {}
     for y, row in enumerate(map_area):
         for x, col in enumerate(row):
             graph[(x, y)] = graph.get((x, y), []) + get.get_next_nodes(x, y)
+
     def dijkstra(self):
         start = (0, 7)
         goal = start
@@ -54,7 +53,7 @@ class Dijkstra(Get):
         cost_visited = {start: 0}
         visited = {start: None}
 
-        bg = pygame.image.load(os.path.join('src', 'images', 'forest.png')).convert()
+        bg = pygame.image.load(os.path.join("src", "images", "forest.png")).convert()
         bg = pygame.transform.scale(bg, (cols * TILE, rows * TILE))
         bfs1 = bfs.Bfs()
 
@@ -67,7 +66,6 @@ class Dijkstra(Get):
                 goal = mouse_pos
             if goal != start:
                 pygame.draw.circle(sc, pygame.Color("purple"), *self.get_circle(*goal))
-
 
             if queue:
                 cur_cost, cur_node = heappop(queue)
@@ -90,15 +88,16 @@ class Dijkstra(Get):
 
             path_head, path_segment = cur_node, cur_node
             while path_segment:
-                pygame.draw.circle(sc, pygame.Color("brown"), *self.get_circle(*path_segment))
+                pygame.draw.circle(
+                    sc, pygame.Color("brown"), *self.get_circle(*path_segment)
+                )
                 path_segment = visited[path_segment]
 
             pygame.draw.circle(sc, pygame.Color("blue"), *self.get_circle(*start))
-            pygame.draw.circle(sc, pygame.Color("magenta"), *self.get_circle(*path_head))
+            pygame.draw.circle(
+                sc, pygame.Color("magenta"), *self.get_circle(*path_head)
+            )
 
             [exit() for event in pygame.event.get() if event.type == pygame.QUIT]
             pygame.display.flip()
             clock.tick(7)
-
-
-
