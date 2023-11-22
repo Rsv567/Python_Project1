@@ -1,5 +1,4 @@
 from collections import deque
-
 import pygame
 
 from src.config import TILE
@@ -33,8 +32,10 @@ class Bfs:
                 ]
         return graph
 
-    def get_rect(self, x, y):
+
+    def get_rect(self,x, y):
         return x * TILE + 1, y * TILE + 1, TILE - 2, TILE - 2
+
 
     def find_way(self):
         start = (0, 0)
@@ -45,14 +46,8 @@ class Bfs:
         running = True
 
         while running:
-            [
-                pygame.draw.rect(screen, (19, 242, 17), self.get_rect(x, y))
-                for x, y in visited
-            ]
-            [
-                pygame.draw.rect(screen, (19, 242, 17), self.get_rect(x, y))
-                for x, y in queue
-            ]
+            [pygame.draw.rect(screen, (19, 242, 17), self.get_rect(x, y)) for x, y in visited]
+            [pygame.draw.rect(screen, (19, 242, 17), self.get_rect(x, y)) for x, y in queue]
             graph = self.create_graph()
             # BFS logic
 
@@ -73,10 +68,7 @@ class Bfs:
                 )
                 path_segment = visited[path_segment]
                 pygame.draw.rect(
-                    screen,
-                    pygame.Color("blue"),
-                    self.get_rect(*start),
-                    border_radius=TILE // 3,
+                    screen, pygame.Color("blue"), self.get_rect(*start), border_radius=TILE // 3
                 )
                 pygame.draw.rect(
                     screen,
@@ -93,7 +85,8 @@ class Bfs:
                     running = False
                     pygame.quit()
 
-    def get_click_mouse_pos(self, screen):
+
+    def get_click_mouse_pos(self,screen):
         x, y = pygame.mouse.get_pos()
         cell_x, cell_y = x // TILE, y // TILE
 
@@ -102,7 +95,8 @@ class Bfs:
             pygame.draw.rect(screen, pygame.Color("red"), self.get_rect(cell_x, cell_y))
         return (cell_x, cell_y) if click[0] else False
 
-    def bfs(self, start, goal, graph):
+
+    def bfs(self,start, goal, graph):
         queue = deque([start])
         visited = {start: None}
 
