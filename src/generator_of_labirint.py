@@ -1,3 +1,4 @@
+import os
 from random import choice
 
 import pygame
@@ -11,8 +12,9 @@ from src.config import rows
 screen = pygame.display.set_mode(RES)
 clock = pygame.time.Clock()
 pygame.display.set_caption("Labirint")
-icon = pygame.image.load("images/Labirint.png")
+icon = pygame.image.load(os.path.join("src", "images", "Labirint.png"))
 pygame.display.set_icon(icon)
+
 
 class Cell:
     def __init__(self, x, y):
@@ -78,8 +80,9 @@ class Cell:
             neighbors.append(left)
         return choice(neighbors) if neighbors else False
 
+
 class generate_labirint:
-    def remove_walls(self,current, next):
+    def remove_walls(self, current, next):
         dx = current.x - next.x
         if dx == 1:
             current.walls["left"] = False
@@ -95,7 +98,6 @@ class generate_labirint:
             current.walls["bottom"] = False
             next.walls["top"] = False
 
-
     def generate_labirint(self):
 
         current_cell = grid_cells[0]
@@ -105,7 +107,9 @@ class generate_labirint:
         running = True
         while running:
             screen.fill((243, 215, 18))
-            screen.blit(pygame.image.load("images/icon.png"), (100, 100))
+            screen.blit(
+                pygame.image.load(os.path.join("src", "images", "icon.png")), (100, 100)
+            )
 
             [cell.draw() for cell in grid_cells]
             current_cell.visited = True
@@ -135,7 +139,6 @@ class generate_labirint:
             counter += 1
             if counter > 500:
                 break
+
+
 grid_cells = [Cell(col, row) for row in range(rows) for col in range(cols)]
-
-
-
