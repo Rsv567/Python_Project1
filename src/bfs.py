@@ -2,13 +2,12 @@ from collections import deque
 
 import pygame
 
-from config import TILE
-from config import cols
-from config import rows
-from generator_of_labirint import grid_cells
-from generator_of_labirint import screen
-from generator_of_labirint import clock
-
+from src.config import TILE
+from src.config import cols
+from src.config import rows
+from src.generator_of_labirint import grid_cells
+from src.generator_of_labirint import screen
+from src.generator_of_labirint import clock
 
 class Bfs:
     def create_graph(self):
