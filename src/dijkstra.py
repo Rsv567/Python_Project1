@@ -1,7 +1,9 @@
 from heapq import heappush
 from heapq import heappop
+
 import pygame
 import bfs
+
 from config import WIDTH
 from config import HEIGHT
 from config import map_area
