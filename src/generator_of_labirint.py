@@ -2,10 +2,10 @@ from random import choice
 
 import pygame
 
-from config import RES
-from config import TILE
-from config import cols
-from config import rows
+from src.config import RES
+from src.config import TILE
+from src.config import cols
+from src.config import rows
 
 
 screen = pygame.display.set_mode(RES)
