@@ -1,5 +1,7 @@
 from collections import deque
+
 import pygame
+
 from config import TILE
 from config import cols
 from config import rows
