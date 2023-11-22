@@ -1,6 +1,6 @@
-import pygame
 import os
 
+import pygame
 
 import src.bfs
 from src.button import ImageButton
