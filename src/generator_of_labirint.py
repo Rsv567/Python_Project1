@@ -1,12 +1,15 @@
-import pygame
 from random import choice
+import pygame
+from config import RES
+from config import TILE
+from config import cols
+from config import rows
 
 
-RES = WIDTH, HEIGHT = 750, 700
-TILE = 50
-cols, rows = WIDTH // TILE, HEIGHT // TILE
 
-pygame.init()
+
+
+
 screen = pygame.display.set_mode(RES)
 clock = pygame.time.Clock()
 pygame.display.set_caption("Labirint")
@@ -78,63 +81,64 @@ class Cell:
             neighbors.append(left)
         return choice(neighbors) if neighbors else False
 
-
-def remove_walls(current, next):
-    dx = current.x - next.x
-    if dx == 1:
-        current.walls["left"] = False
-        next.walls["right"] = False
-    elif dx == -1:
-        current.walls["right"] = False
-        next.walls["left"] = False
-    dy = current.y - next.y
-    if dy == 1:
-        current.walls["top"] = False
-        next.walls["bottom"] = False
-    elif dy == -1:
-        current.walls["bottom"] = False
-        next.walls["top"] = False
-
-
-def generate_labirint():
-
-    current_cell = grid_cells[0]
-    stack = []
-    counter = 0
-    colors, color = [], 40
-    running = True
-    while running:
-        screen.fill((243, 215, 18))
-        screen.blit(pygame.image.load("images/icon.png"), (100, 100))
-
-        [cell.draw() for cell in grid_cells]
-        current_cell.visited = True
-        current_cell.draw_current_cell()
-        [
-            pygame.draw.rect(
-                screen,
-                colors[i],
-                (cell.x * TILE + 2, cell.y * TILE + 2, TILE - 4, TILE - 4),
-            )
-            for i, cell in enumerate(stack)
-        ]
-
-        next_cell = current_cell.check_neighbors()
-        if next_cell:
-            next_cell.visited = True
-            stack.append(current_cell)
-            colors.append((min(color, 255), 10, 100))
-            color += 1
-            remove_walls(current_cell, next_cell)
-            current_cell = next_cell
-        elif stack:
-            current_cell = stack.pop()
-        [exit() for event in pygame.event.get() if event.type == pygame.QUIT]
-        pygame.display.flip()
-        clock.tick(100)
-        counter += 1
-        if counter > 500:
-            break
+class generate_labirint:
+    def remove_walls(self,current, next):
+        dx = current.x - next.x
+        if dx == 1:
+            current.walls["left"] = False
+            next.walls["right"] = False
+        elif dx == -1:
+            current.walls["right"] = False
+            next.walls["left"] = False
+        dy = current.y - next.y
+        if dy == 1:
+            current.walls["top"] = False
+            next.walls["bottom"] = False
+        elif dy == -1:
+            current.walls["bottom"] = False
+            next.walls["top"] = False
 
 
+    def generate_labirint(self):
+
+        current_cell = grid_cells[0]
+        stack = []
+        counter = 0
+        colors, color = [], 40
+        running = True
+        while running:
+            screen.fill((243, 215, 18))
+            screen.blit(pygame.image.load("images/icon.png"), (100, 100))
+
+            [cell.draw() for cell in grid_cells]
+            current_cell.visited = True
+            current_cell.draw_current_cell()
+            [
+                pygame.draw.rect(
+                    screen,
+                    colors[i],
+                    (cell.x * TILE + 2, cell.y * TILE + 2, TILE - 4, TILE - 4),
+                )
+                for i, cell in enumerate(stack)
+            ]
+
+            next_cell = current_cell.check_neighbors()
+            if next_cell:
+                next_cell.visited = True
+                stack.append(current_cell)
+                colors.append((min(color, 255), 10, 100))
+                color += 1
+                self.remove_walls(current_cell, next_cell)
+                current_cell = next_cell
+            elif stack:
+                current_cell = stack.pop()
+            [exit() for event in pygame.event.get() if event.type == pygame.QUIT]
+            pygame.display.flip()
+            clock.tick(100)
+            counter += 1
+            if counter > 500:
+                break
 grid_cells = [Cell(col, row) for row in range(rows) for col in range(cols)]
+
+
+
