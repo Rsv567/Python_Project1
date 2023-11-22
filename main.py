@@ -27,7 +27,7 @@ dijkstra1 = ImageButton(
     "src/images/green.com.png",
 )
 deikstra = Dijkstra()
-generate = GenerateLabirint()
+generate = generate_labirint()
 bfs2 = Bfs()
 def MainMenu():
     running = True
