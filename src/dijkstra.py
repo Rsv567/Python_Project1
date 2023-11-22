@@ -4,12 +4,12 @@ from heapq import heappop
 import pygame
 import bfs
 
-from config import WIDTH
-from config import HEIGHT
-from config import map_area
-from config import cols
-from config import rows
-from config import TILE
+from src.config import WIDTH
+from src.config import HEIGHT
+from src.config import map_area
+from src.config import cols
+from src.config import rows
+from src.config import TILE
 
 
 screen1 = pygame.display.set_mode((WIDTH, HEIGHT))
