@@ -9,12 +9,11 @@ from config import cols
 from config import rows
 from config import TILE
 
+
 screen1 = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.init()
 sc = pygame.display.set_mode([cols * TILE, rows * TILE])
 clock = pygame.time.Clock()
-
-
 
 class Dijkstra():
 
