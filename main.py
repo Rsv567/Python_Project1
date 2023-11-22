@@ -1,13 +1,14 @@
-from dijkstra import *
-from button import *
-
+from src.dijkstra import Dijkstra
+from src.button import ImageButton
+from src.config import WIDTH
+from src.config import HEIGHT
 pygame.init()
 
-WIDTH1, HEIGHT1 = WIDTH, HEIGHT
+
 
 pygame.display.set_caption("Labirint")
-generator1 = image_button(
-    WIDTH1 / 2 - (150 / 2),
+generator1 = ImageButton(
+    WIDTH / 2 - (150 / 2),
     70,
     150,
     74,
@@ -16,8 +17,8 @@ generator1 = image_button(
     "images/green.com.png",
 )
 
-dijkstra1 = image_button(
-    WIDTH1 / 2 - (150 / 2),
+dijkstra1 = ImageButton(
+    WIDTH / 2 - (150 / 2),
     200,
     150,
     74,
@@ -27,7 +28,7 @@ dijkstra1 = image_button(
 )
 
 
-def main_menu():
+def MainMenu():
     running = True
     while running:
 
@@ -35,7 +36,7 @@ def main_menu():
 
         screen1.blit(
             pygame.transform.scale(
-                pygame.image.load("images/icon.png"), (WIDTH1, HEIGHT1)
+                pygame.image.load("images/icon.png"), (WIDTH, HEIGHT)
             ),
             (0, 0),
         )
@@ -61,4 +62,4 @@ def main_menu():
                 pygame.quit()
 
 
-main_menu()
+MainMenu()
