@@ -1,9 +1,8 @@
 from heapq import heappush
 from heapq import heappop
-
+import os
 import pygame
-import bfs
-
+import src.bfs as bfs
 from src.config import WIDTH
 from src.config import HEIGHT
 from src.config import map_area
@@ -11,13 +10,14 @@ from src.config import cols
 from src.config import rows
 from src.config import TILE
 
-
 screen1 = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.init()
 sc = pygame.display.set_mode([cols * TILE, rows * TILE])
 clock = pygame.time.Clock()
 
-class Dijkstra():
+
+
+class Get:
 
     def get_circle(self,x, y):
         return (x * TILE + TILE // 2, y * TILE + TILE // 2), TILE // 4
@@ -36,6 +36,16 @@ class Dijkstra():
             if check_next_node(x + dx, y + dy)
         ]
 
+
+
+
+
+class Dijkstra(Get):
+    get = Get()
+    graph = {}
+    for y, row in enumerate(map_area):
+        for x, col in enumerate(row):
+            graph[(x, y)] = graph.get((x, y), []) + get.get_next_nodes(x, y)
     def dijkstra(self):
         start = (0, 7)
         goal = start
@@ -44,7 +54,7 @@ class Dijkstra():
         cost_visited = {start: 0}
         visited = {start: None}
 
-        bg = pygame.image.load("images/forest.png").convert()
+        bg = pygame.image.load(os.path.join('src', 'images', 'forest.png')).convert()
         bg = pygame.transform.scale(bg, (cols * TILE, rows * TILE))
         bfs1 = bfs.Bfs()
 
@@ -90,8 +100,5 @@ class Dijkstra():
             pygame.display.flip()
             clock.tick(7)
 
-dijkstra = Dijkstra()
-graph = {}
-for y, row in enumerate(map_area):
-    for x, col in enumerate(row):
-        graph[(x, y)] = graph.get((x, y), []) + dijkstra.get_next_nodes(x, y)
+
+
