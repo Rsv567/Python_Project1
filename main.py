@@ -1,4 +1,4 @@
-from src.dijkstra import Dijkstra
+from src.dijkstra import *
 from src.button import ImageButton
 from src.config import WIDTH
 from src.config import HEIGHT
@@ -26,8 +26,9 @@ dijkstra1 = ImageButton(
     "images/red.png",
     "images/green.com.png",
 )
-
-
+deikstra = Dijkstra()
+generate = GenerateLabirint()
+bfs2 = Bfs()
 def MainMenu():
     running = True
     while running:
@@ -51,10 +52,10 @@ def MainMenu():
         clock.tick(100)
         for event in pygame.event.get():
             if event.type == pygame.USEREVENT and event.button == generator1:
-                generate_labirint()
-                find_way()
+                generate.generate_labirint()
+                bfs2.find_way()
             if event.type == pygame.USEREVENT and event.button == dijkstra1:
-                dijkstra()
+                deikstra.dijkstra()
             generator1.handle_event(event)
             dijkstra1.handle_event(event)
             if event.type == pygame.QUIT:
