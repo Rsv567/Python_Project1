@@ -1,6 +1,8 @@
 import pygame
+import os
 
-from src.bfs import Bfs
+
+import src.bfs
 from src.button import ImageButton
 from src.config import WIDTH
 from src.config import HEIGHT
@@ -8,6 +10,7 @@ from src.dijkstra import Dijkstra
 from src.dijkstra import screen1
 from src.dijkstra import clock
 from src.generator_of_labirint import generate_labirint
+
 
 
 pygame.init()
@@ -18,8 +21,8 @@ generator1 = ImageButton(
     150,
     74,
     "Лабиринт",
-    "images/red.png",
-    "images/green.com.png",
+    os.path.join('src', 'images', 'red.png'),
+    os.path.join('src', 'images', 'green.com.png'),
 )
 
 dijkstra1 = ImageButton(
@@ -28,12 +31,12 @@ dijkstra1 = ImageButton(
     150,
     74,
     "Дейкстра",
-    "images/red.png",
-    "images/green.com.png",
+    os.path.join('src', 'images', 'red.png'),
+    os.path.join('src', 'images', 'green.com.png'),
 )
 deikstra = Dijkstra()
 generate = generate_labirint()
-bfs2 = Bfs()
+bfs2 = src.bfs.Bfs()
 
 
 def MainMenu():
@@ -44,7 +47,7 @@ def MainMenu():
 
         screen1.blit(
             pygame.transform.scale(
-                pygame.image.load("images/icon.png"), (WIDTH, HEIGHT)
+                pygame.image.load(os.path.join('src', 'images', 'icon.png')), (WIDTH, HEIGHT)
             ),
             (0, 0),
         )
